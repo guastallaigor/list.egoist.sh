@@ -1,7 +1,3 @@
-# list.egoist.sh
+# list.guastallaigor.sh
 
-> Tracking EGOIST&#39;s anime / manga lists
-
-## License
-
-MIT &copy; egoist
+| Anilist API example

@@ -1,22 +1,24 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 
-export default class MyDocument extends Document {
-  static async getInitialProps (ctx) {
+class MyDocument extends Document {
+  static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
 
-  render () {
+  render() {
     return (
-      <html>
+      <Html>
         <Head>
-          <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
+          <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
         </Head>
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }
+
+export default MyDocument

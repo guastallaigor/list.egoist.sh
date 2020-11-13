@@ -4,16 +4,16 @@ import humanizeDuration from 'humanize-duration'
 import mediaListQuery from '../lib/gql/media-list.gql'
 import { getList } from '../lib/utils'
 
-export default ({ status }) => {
+const MediaList = ({ status }) => {
   const router = useRouter()
-  const mediaType = (router.query.type || 'anime').toUpperCase()
+  const mediaType = 'ANIME'
   const sort =
     status === 'completed'
       ? ['SCORE_DESC', 'UPDATED_TIME_DESC']
       : ['UPDATED_TIME_DESC']
-  const scoreFilter = items => {
+  const scoreFilter = (items) => {
     const { rating } = router.query
-    return items.filter(item => {
+    return items.filter((item) => {
       if (status === 'completed') {
         if (rating === 'perfect') {
           return item.score && item.score >= 9.5
@@ -29,7 +29,7 @@ export default ({ status }) => {
     })
   }
   const mediaListResult = useQuery(mediaListQuery, {
-    variables: { user: 135910, type: mediaType, sort }
+    variables: { user: 802131, type: mediaType, sort },
   })
 
   const { loading, data } = mediaListResult
@@ -102,7 +102,7 @@ export default ({ status }) => {
   }
   return (
     <div className="media-list">
-      {items.map(entry => {
+      {items.map((entry) => {
         const useVolumes = entry.progressVolumes && entry.progressVolumes > 0
         const useChapters =
           mediaType === 'MANGA' && entry.progress && entry.progress > 0
@@ -121,7 +121,7 @@ export default ({ status }) => {
               className="media-cover"
               style={{
                 backgroundColor: entry.media.coverImage.color,
-                backgroundImage: `url(${entry.media.coverImage.large})`
+                backgroundImage: `url(${entry.media.coverImage.large})`,
               }}
             />
             <div className="media-content">
@@ -132,7 +132,7 @@ export default ({ status }) => {
                 )}
               </div>
               <div className="media-meta">
-                {status === 'completed' && entry.score ? (
+                {entry.score ? (
                   <span className="media-score">Score: {entry.score}</span>
                 ) : null}
                 {status === 'current' && (
@@ -160,7 +160,7 @@ export default ({ status }) => {
               <div
                 className="media-description"
                 dangerouslySetInnerHTML={{
-                  __html: entry.media.description
+                  __html: entry.media.description,
                 }}
               />
               {entry.media.season && entry.media.seasonYear && (
@@ -258,3 +258,5 @@ export default ({ status }) => {
     </div>
   )
 }
+
+export default MediaList

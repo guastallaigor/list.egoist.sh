@@ -3,7 +3,7 @@ import MediaList from '../components/MediaList'
 import Nav from '../components/Nav'
 import PageTitle from '../components/PageTitle'
 
-export default () => {
+const Home = () => {
   return (
     <div className="page">
       <PageTitle status="current" />
@@ -12,3 +12,5 @@ export default () => {
     </div>
   )
 }
+
+export default Home

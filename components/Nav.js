@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import GitHub from './GitHub'
 
-export default () => {
+const Nav = () => {
   const router = useRouter()
-  const queryWithout = keys => {
+  const queryWithout = (keys) => {
     const query = {}
     for (const key of Object.keys(router.query)) {
       if (keys.indexOf(key) === -1) {
@@ -67,29 +67,13 @@ export default () => {
           </li>
         </ul>
         <div className="options">
-          <select
-            defaultValue={router.query.type || 'animes'}
-            onChange={e => {
-              const query = { ...router.query, type: e.target.value }
-              if (query.type === 'anime') {
-                delete query.type
-              }
-              router.push({
-                pathname: router.pathname,
-                query
-              })
-            }}
-          >
-            <option value="anime">Type: Anime</option>
-            <option value="manga">Type: Manga</option>
-          </select>
           {router.pathname === '/completed' && (
             <select
               defaultValue={router.query.rating || 'all'}
-              onChange={e =>
+              onChange={(e) =>
                 router.push({
                   pathname: router.pathname,
-                  query: { ...router.query, rating: e.target.value }
+                  query: { ...router.query, rating: e.target.value },
                 })
               }
             >
@@ -146,3 +130,5 @@ export default () => {
     </>
   )
 }
+
+export default Nav

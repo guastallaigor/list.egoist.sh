@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-export default ({ status }) => {
+const PageTitle = ({ status }) => {
   const router = useRouter()
-  const title = `EGOIST の ${
+  const title = `@guastallaigor ${
     status === 'completed'
       ? 'Completed'
       : status === 'current'
@@ -26,3 +26,5 @@ export default ({ status }) => {
     </>
   )
 }
+
+export default PageTitle
