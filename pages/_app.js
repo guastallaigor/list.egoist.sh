@@ -22,7 +22,6 @@ class MyApp extends App {
     if (ctx.res) {
       ctx.res.setHeader('Cache-Control', 'maxage=180,s-maxage=60')
     }
-    console.log(ctx, ':213')
 
     let pageProps = {}
 
@@ -43,7 +42,6 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, apolloClient } = this.props
-    console.log(this.props.pageProps, ':1')
     return (
       <>
         <Head>

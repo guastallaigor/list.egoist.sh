@@ -42,7 +42,7 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <a href="https://anilist.co/user/egoistlily" target="blank">
+            <a href="https://anilist.co/user/guastallaigor" target="blank">
               My AniList
             </a>
             <svg
