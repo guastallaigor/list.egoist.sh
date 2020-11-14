@@ -4,7 +4,7 @@ import mediaListQuery from '../../lib/gql/media-list.gql'
 import Loading from '../../components/Loading'
 import { initializeApollo } from '../../lib/apollo'
 
-export default function Anime({ pageProps }) {
+export default function Anime({ data }) {
   const { isFallback } = useRouter()
 
   if (isFallback) {
@@ -13,8 +13,8 @@ export default function Anime({ pageProps }) {
 
   return (
     <div>
-      <img src={pageProps.bannerImage} alt="Banner" />
-      <div>{pageProps.title.romaji}</div>
+      <img src={data.bannerImage} alt="Banner" />
+      <div>{data.title.romaji}</div>
     </div>
   )
 }
@@ -28,29 +28,29 @@ export const getStaticPaths = async () => {
   })
   const { lists } = data.MediaListCollection
 
-  const ids = Array.from(lists)
+  const paths = Array.from(lists)
     .map((list) => list.entries.map((entries) => entries.media.id))
     .flatMap((it) => it)
     .map((it) => ({ params: { id: String(it) } }))
 
   return {
-    paths: ids,
+    paths,
     fallback: true,
   }
 }
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async ({ params }) => {
   const apolloClient = initializeApollo()
-
+  const { id } = params
   const { data } = await apolloClient.query({
     query: mediaList,
-    variables: { id: context.params.id },
+    variables: { id },
   })
   const { Media } = data
 
   return {
     props: {
-      pageProps: Media,
+      data: Media,
     },
     revalidate: 86400,
   }
