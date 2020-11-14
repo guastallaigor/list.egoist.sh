@@ -3,6 +3,7 @@ const GitHub = () => (
     <a
       href="https://github.com/guastallaigor/list.egoist.sh"
       className="github-corner"
+      target="_blank"
       aria-label="View source on GitHub"
     >
       <svg

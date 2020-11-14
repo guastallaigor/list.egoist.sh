@@ -1,17 +1,19 @@
 {
-  "name": "list",
-  "private": true,
+  "name": "list.guastallaigor.sh",
+  "private": false,
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "deploy": "now"
+    "deploy": "now",
+    "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.5",
     "@apollo/react-hooks": "^4.0.0",
     "@apollo/react-ssr": "^4.0.0",
     "apollo-boost": "^0.4.9",
-    "deepmerge": "^4.2.2",
+    "apollo-server-micro": "^2.19.0",
     "graphql": "^15.4.0",
     "humanize-duration": "^3.24.0",
     "isomorphic-unfetch": "^3.1.0",
@@ -22,5 +24,6 @@
   },
   "devDependencies": {
     "graphql-tag": "^2.11.0"
-  }
+  },
+  "license": "MIT"
 }

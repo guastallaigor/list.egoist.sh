@@ -1,53 +1,57 @@
-import { useQuery } from '@apollo/react-hooks'
 import { useRouter } from 'next/router'
 import mediaList from '../../lib/gql/media.gql'
 import mediaListQuery from '../../lib/gql/media-list.gql'
 import Loading from '../../components/Loading'
+import { initializeApollo } from '../../lib/apollo'
 
-export default function Member({ pageProps, loading }) {
+export default function Anime({ pageProps }) {
   const { isFallback } = useRouter()
 
-  if (isFallback || loading) {
+  if (isFallback) {
     return <Loading />
   }
 
-  return <pre>{pageProps}</pre>
+  return (
+    <div>
+      <img src={pageProps.bannerImage} alt="Banner" />
+      <div>{pageProps.title.romaji}</div>
+    </div>
+  )
 }
 
-export const getStaticPaths = () => {
-  // const mediaListResult = useQuery(mediaListQuery, {
-  //   variables: { user: 802131, type: 'ANIME', sort: 'UPDATED_TIME_DESC' },
-  // })
-  // const { loading, data } = mediaListResult
-  // const lists = data.MediaListCollection.lists
+export const getStaticPaths = async () => {
+  const apolloClient = initializeApollo()
 
-  // const ids = lists
-  //   .map((list) => list.entries.map((entries) => entries.media.id))
-  //   .flatMap((it) => it)
+  const { data } = await apolloClient.query({
+    query: mediaListQuery,
+    variables: { user: 802131, type: 'ANIME', sort: 'UPDATED_TIME_DESC' },
+  })
+  const { lists } = data.MediaListCollection
 
-  // if (loading || !data) {
+  const ids = Array.from(lists)
+    .map((list) => list.entries.map((entries) => entries.media.id))
+    .flatMap((it) => it)
+    .map((it) => ({ params: { id: String(it) } }))
+
   return {
-    paths: [{ params: { id: '1535' } }, { params: { id: '8131' } }],
+    paths: ids,
     fallback: true,
   }
-  // }
-
-  // return {
-  //   paths: ids,
-  //   fallback: true,
-  // }
 }
 
 export const getStaticProps = async (context) => {
-  const mediaResult = await useQuery(mediaList, {
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query({
+    query: mediaList,
     variables: { id: context.params.id },
   })
-  const { loading, data } = mediaResult
+  const { Media } = data
 
   return {
     props: {
-      pageProps: data,
-      loading,
+      pageProps: Media,
+      revalidate: 5000,
     },
   }
 }
