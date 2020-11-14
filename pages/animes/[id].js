@@ -51,7 +51,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       pageProps: Media,
-      revalidate: 5000,
     },
+    revalidate: 86400,
   }
 }

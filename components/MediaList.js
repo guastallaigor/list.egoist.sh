@@ -6,7 +6,7 @@ import mediaListQuery from '../lib/gql/media-list.gql'
 import { getList } from '../lib/utils'
 import Loading from './Loading'
 
-const MediaList = ({ status }) => {
+const MediaList = ({ status, pageProps }) => {
   const router = useRouter()
   const mediaType = 'ANIME'
   const sort =
@@ -30,14 +30,22 @@ const MediaList = ({ status }) => {
       return true
     })
   }
-  const mediaListResult = useQuery(mediaListQuery, {
-    variables: { user: 802131, type: mediaType, sort },
-  })
 
-  const { loading, data } = mediaListResult
+  let data
 
-  if (loading || !data) {
-    return <Loading />
+  if (!pageProps) {
+    const mediaListResult = useQuery(mediaListQuery, {
+      variables: { user: 802131, type: mediaType, sort },
+    })
+
+    data = mediaListResult.data
+    const { loading } = mediaListResult
+
+    if (loading || !data) {
+      return <Loading />
+    }
+  } else {
+    data = pageProps
   }
 
   const list = getList(

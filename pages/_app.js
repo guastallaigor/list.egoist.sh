@@ -19,6 +19,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="viewport-fit=cover" />
+        <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
       </Head>
       <ApolloProvider client={apolloClient}>
         <Component {...pageProps} />
