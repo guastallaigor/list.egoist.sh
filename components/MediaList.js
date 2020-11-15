@@ -5,6 +5,7 @@ import humanizeDuration from 'humanize-duration'
 import mediaListQuery from '../lib/gql/media-list.gql'
 import { getList } from '../lib/utils'
 import Loading from './Loading'
+import BtnOpenInAnilist from './BtnOpenInAnilist'
 
 const MediaList = ({ status, pageProps }) => {
   const router = useRouter()
@@ -76,9 +77,6 @@ const MediaList = ({ status, pageProps }) => {
       </div>
     )
   }
-  const openNewUrl = (siteUrl) => {
-    window.open(siteUrl)
-  }
   return (
     <div className="media-list">
       {items.map((entry) => {
@@ -113,34 +111,7 @@ const MediaList = ({ status, pageProps }) => {
                       <span className="media-format">{entry.media.format}</span>
                     )}
                   </div>
-                  <button
-                    title="Open on Anilist"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      openNewUrl(entry.media.siteUrl)
-                    }}
-                    className="media-button"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      x="0px"
-                      y="0px"
-                      viewBox="0 0 100 100"
-                      width="15"
-                      height="15"
-                      className="external-link-icon"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
-                      />{' '}
-                      <polygon
-                        fill="currentColor"
-                        points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
-                      />
-                    </svg>
-                  </button>
+                  <BtnOpenInAnilist siteUrl={entry.media.siteUrl} />
                 </div>
                 <div className="media-meta">
                   {entry.score ? (
@@ -191,6 +162,11 @@ const MediaList = ({ status, pageProps }) => {
             calc((100% - 40px) / 3) calc((100% - 40px) / 3)
             calc((100% - 40px) / 3);
           grid-gap: 20px;
+        }
+        @media (min-width: 769px) and (max-width: 1023px) {
+          .media-list {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
         @media (max-width: 768px) {
           .media-list {
@@ -263,14 +239,6 @@ const MediaList = ({ status, pageProps }) => {
         .media-description {
           max-height: 150px;
           overflow: auto;
-        }
-        .media-button {
-          background: transparent;
-          border: 0;
-          color: #067df7;
-        }
-        .media-button:hover {
-          opacity: 0.75;
         }
         .media-season {
           color: #999;

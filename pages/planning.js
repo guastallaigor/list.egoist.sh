@@ -5,10 +5,12 @@ import PageTitle from '../components/PageTitle'
 
 const Planning = () => {
   return (
-    <div className="page">
-      <PageTitle status="planning" />
-      <Nav />
-      <MediaList status="planning" />
+    <div className="page-container">
+      <div className="page">
+        <PageTitle status="planning" />
+        <Nav />
+        <MediaList status="planning" />
+      </div>
     </div>
   )
 }

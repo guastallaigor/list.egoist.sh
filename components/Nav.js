@@ -125,6 +125,11 @@ const Nav = () => {
             color: #999;
             margin-left: 3px;
           }
+          @media screen and (max-width: 768px) {
+            .options {
+              display: none;
+            }
+          }
         `}</style>
       </nav>
     </>

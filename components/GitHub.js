@@ -4,6 +4,7 @@ const GitHub = () => (
       href="https://github.com/guastallaigor/list.egoist.sh"
       className="github-corner"
       target="_blank"
+      rel="noopener noreferrer"
       aria-label="View source on GitHub"
     >
       <svg

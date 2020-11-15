@@ -7,10 +7,12 @@ import { initializeApollo } from '../lib/apollo'
 
 const Home = ({ pageProps }) => {
   return (
-    <div className="page">
-      <PageTitle status="current" />
-      <Nav />
-      <MediaList status="current" pageProps={pageProps} />
+    <div className="page-container">
+      <div className="page">
+        <PageTitle status="current" />
+        <Nav />
+        <MediaList status="current" pageProps={pageProps} />
+      </div>
     </div>
   )
 }
