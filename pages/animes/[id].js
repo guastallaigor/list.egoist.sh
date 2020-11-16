@@ -208,6 +208,18 @@ export default function Anime({ data }) {
   )
 }
 
+Object.defineProperty(Array.prototype, 'flat', {
+  value: function (depth = 1) {
+    return this.reduce(function (flat, toFlatten) {
+      return flat.concat(
+        Array.isArray(toFlatten) && depth > 1
+          ? toFlatten.flat(depth - 1)
+          : toFlatten
+      )
+    }, [])
+  },
+})
+
 export const getStaticPaths = async () => {
   const apolloClient = initializeApollo()
 
@@ -219,12 +231,12 @@ export const getStaticPaths = async () => {
 
   const paths = Array.from(lists)
     .map((list) => list.entries.map((entries) => entries.media.id))
-    .flatMap((it) => it)
+    .flat()
     .map((it) => ({ params: { id: String(it) } }))
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   }
 }
 
