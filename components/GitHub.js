@@ -12,8 +12,8 @@ const GitHub = () => (
         height="80"
         viewBox="0 0 250 250"
         style={{
-          fill: '#151513',
-          color: '#fff',
+          fill: 'var(--github-corner)',
+          color: 'var(--github-link)',
           position: 'absolute',
           top: 0,
           border: 0,
@@ -36,6 +36,9 @@ const GitHub = () => (
       </svg>
     </a>
     <style jsx>{`
+      .github-corner {
+        background: var(--text);
+      }
       .github-corner:hover .octo-arm {
         animation: octocat-wave 560ms ease-in-out;
       }

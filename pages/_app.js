@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/client'
 import NProgress from 'nprogress'
 import '../css/global.css'
 import { useApollo } from '../lib/apollo'
+import withDarkMode, { MODE, useDarkMode } from 'next-dark-mode'
 
 Router.events.on('routeChangeStart', (url) => {
   console.log(`Loading: ${url}`)
@@ -12,8 +13,11 @@ Router.events.on('routeChangeStart', (url) => {
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-export default function App({ Component, pageProps }) {
-  const apolloClient = useApollo(pageProps.initialApolloState)
+const App = ({ Component, pageProps }) => {
+  const initialApolloState = pageProps ? pageProps.initialApolloState : null
+  const apolloClient = useApollo(initialApolloState)
+  const { darkModeActive } = useDarkMode()
+  const theme = darkModeActive ? 'dark' : 'light'
 
   return (
     <>
@@ -26,8 +30,12 @@ export default function App({ Component, pageProps }) {
         <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
       </Head>
       <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
+        <div className={`app ${theme}`}>
+          <Component {...pageProps} theme={theme} />
+        </div>
       </ApolloProvider>
     </>
   )
 }
+
+export default withDarkMode(App, { defaultMode: MODE.DARK })

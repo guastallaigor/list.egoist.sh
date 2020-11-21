@@ -3,12 +3,12 @@ import MediaList from '../components/MediaList'
 import Nav from '../components/Nav'
 import PageTitle from '../components/PageTitle'
 
-const Completed = () => {
+const Completed = ({ theme }) => {
   return (
     <div className="page-container">
       <div className="page">
         <PageTitle status="completed" />
-        <Nav />
+        <Nav theme={theme} />
         <MediaList status="completed" />
       </div>
     </div>

@@ -6,14 +6,17 @@ import mediaListQuery from '../../lib/gql/media-list.gql'
 import Loading from '../../components/Loading'
 import { initializeApollo } from '../../lib/apollo'
 import BtnOpenInAnilist from '../../components/BtnOpenInAnilist'
+import { useDarkMode } from 'next-dark-mode'
 
 export default function Anime({ data }) {
   const { isFallback } = useRouter()
+  const { darkModeActive } = useDarkMode()
+  const theme = darkModeActive ? 'dark' : 'light'
 
   if (isFallback) return <Loading />
 
   return (
-    <section>
+    <section className={`main ${theme}`}>
       <div className="banner">
         <Image src={data.bannerImage} alt="Banner" layout="fill" />
         <div className="shadow"></div>
@@ -141,7 +144,7 @@ export default function Anime({ data }) {
           font-weight: 500;
         }
         .value {
-          color: rgb(146, 153, 161);
+          color: var(--value);
           font-size: 0.9rem;
           line-height: 1.3;
         }
@@ -193,7 +196,7 @@ export default function Anime({ data }) {
           width: 100%;
         }
         .left {
-          color: #004d9c;
+          color: var(--link);
           cursor: pointer;
           margin-left: 3px;
         }
@@ -253,6 +256,7 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       data: Media,
+      initialApolloState: apolloClient.cache.extract(),
     },
     revalidate: 86400,
   }

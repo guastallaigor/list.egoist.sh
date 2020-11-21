@@ -5,12 +5,12 @@ import PageTitle from '../components/PageTitle'
 import mediaListQuery from '../lib/gql/media-list.gql'
 import { initializeApollo } from '../lib/apollo'
 
-const Home = ({ pageProps }) => {
+const Home = ({ pageProps, theme }) => {
   return (
     <div className="page-container">
       <div className="page">
         <PageTitle status="current" />
-        <Nav />
+        <Nav theme={theme} />
         <MediaList status="current" pageProps={pageProps} />
       </div>
     </div>
@@ -28,6 +28,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       pageProps: data,
+      initialApolloState: apolloClient.cache.extract(),
     },
     revalidate: 12,
   }

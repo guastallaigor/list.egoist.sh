@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import GitHub from './GitHub'
+import ToggleDarkMode from './ToggleDarkMode'
 
 const Nav = () => {
   const router = useRouter()
@@ -64,6 +65,9 @@ const Nav = () => {
                 />
               </svg>
             </a>
+          </li>
+          <li>
+            <ToggleDarkMode />
           </li>
         </ul>
         <div className="options">

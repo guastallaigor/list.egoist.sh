@@ -35,7 +35,7 @@ const BtnOpenInAnilist = ({ siteUrl }) => (
       .media-button {
         background: transparent;
         border: 0;
-        color: #067df7;
+        color: var(--link);
         height: 100%;
       }
       .media-button:hover {

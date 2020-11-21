@@ -184,9 +184,8 @@ const MediaList = ({ status, pageProps }) => {
           font-size: 16px;
           text-decoration: none;
           padding: 10px;
-          color: #000;
           border-radius: 3px;
-          background-color: #fff;
+          background-color: var(--card-background);
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease-in-out;
           cursor: pointer;
@@ -197,14 +196,15 @@ const MediaList = ({ status, pageProps }) => {
             0 5px 15px 0 rgba(0, 0, 0, 0.08);
         }
         .media-title {
+          color: var(--card-description);
           font-size: 18px;
           margin-bottom: 5px;
           display: flex;
           align-items: center;
         }
         .media-format {
-          background: #0366d6;
-          color: white;
+          background: var(--card-format-background);
+          color: var(--card-format-color);
           border-radius: 4px;
           padding: 0 5px;
           margin-left: 10px;
@@ -215,7 +215,7 @@ const MediaList = ({ status, pageProps }) => {
         .media-meta {
           margin-bottom: 5px;
           font-size: 13px;
-          color: #03a9f4;
+          color: var(--card-meta);
           font-style: italic;
           font-weight: bold;
         }
@@ -224,7 +224,7 @@ const MediaList = ({ status, pageProps }) => {
           margin: 0 5px;
         }
         .media-description {
-          color: #999;
+          color: var(--card-description);
           font-size: 14px;
         }
         .media-cover {
@@ -241,7 +241,7 @@ const MediaList = ({ status, pageProps }) => {
           overflow: auto;
         }
         .media-season {
-          color: #999;
+          color: var(--card-description);
           margin-top: 10px;
           font-size: 13px;
         }
