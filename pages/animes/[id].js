@@ -177,6 +177,7 @@ export default function Anime({ data }) {
           display: flex;
           flex-flow: row nowrap;
           align-items: center;
+          margin: 20px 0;
         }
         .title > h1 {
           margin-right: 5px;

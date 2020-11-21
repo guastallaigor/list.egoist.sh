@@ -3,10 +3,10 @@
   "private": false,
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3030",
     "build": "next build",
     "deploy": "now",
-    "start": "next start"
+    "start": "next start -p 3030"
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",
