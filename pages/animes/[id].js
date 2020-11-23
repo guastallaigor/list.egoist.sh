@@ -18,7 +18,9 @@ export default function Anime({ data }) {
   return (
     <section className={`main ${theme}`}>
       <div className="banner">
-        <Image src={data.bannerImage} alt="Banner" layout="fill" />
+        {data && data.bannerImage && (
+          <Image src={data.bannerImage} alt="Banner" layout="fill" />
+        )}
         <div className="shadow"></div>
       </div>
       <div className="container">
@@ -233,6 +235,15 @@ export const getStaticPaths = async () => {
     query: mediaListQuery,
     variables: { user: 802131, type: 'ANIME', sort: 'UPDATED_TIME_DESC' },
   })
+
+  if (!data) {
+    console.warn('Data not available (paths).')
+    return {
+      paths: [],
+      fallback: true,
+    }
+  }
+
   const { lists } = data.MediaListCollection
 
   const paths = Array.from(lists)
@@ -253,6 +264,18 @@ export const getStaticProps = async ({ params }) => {
     query: mediaList,
     variables: { id },
   })
+
+  if (!data) {
+    console.warn('Data not available (props).')
+    return {
+      props: {
+        data: [],
+        initialApolloState: [],
+      },
+      revalidate: 60,
+    }
+  }
+
   const { Media } = data
 
   return {
