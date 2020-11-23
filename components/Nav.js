@@ -100,12 +100,15 @@ const Nav = () => {
           }
           select {
             appearance: none;
-            border: 1px solid #eaeaea;
+            border: 1px solid var(--border-select);
             padding: 5px 10px;
-            background-color: white;
+            color: var(--color-select);
+            background-color: var(--background-select);
+            border-radius: 3px;
+            transition: border .2s ease-in-out;
           }
           select:hover {
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border-color: var(--border-hover-select);
           }
           ul {
             margin: 0;
@@ -117,16 +120,17 @@ const Nav = () => {
             margin-right: 20px;
           }
           a {
-            color: #999;
+            color: var(--nav-link);
+            transition: color .2s ease-in-out;
           }
           a:hover {
-            color: #666;
+            color: var(--nav-link-hover);
           }
           a.active {
-            color: #000;
+            color: var(--nav-link-active);
           }
           .external-link-icon {
-            color: #999;
+            color: var(--nav-link);
             margin-left: 3px;
           }
           @media screen and (max-width: 768px) {

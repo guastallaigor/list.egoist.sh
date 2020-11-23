@@ -212,17 +212,19 @@ export default function Anime({ data }) {
   )
 }
 
-Object.defineProperty(Array.prototype, 'flat', {
-  value: function (depth = 1) {
-    return this.reduce(function (flat, toFlatten) {
-      return flat.concat(
-        Array.isArray(toFlatten) && depth > 1
-          ? toFlatten.flat(depth - 1)
-          : toFlatten
-      )
-    }, [])
-  },
-})
+if (!Array.prototype.flat) {
+  Object.defineProperty(Array.prototype, 'flat', {
+    value: function (depth = 1) {
+      return this.reduce(function (flat, toFlatten) {
+        return flat.concat(
+          Array.isArray(toFlatten) && depth > 1
+            ? toFlatten.flat(depth - 1)
+            : toFlatten
+        )
+      }, [])
+    },
+  })
+}
 
 export const getStaticPaths = async () => {
   const apolloClient = initializeApollo()

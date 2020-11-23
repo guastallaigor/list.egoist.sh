@@ -55,9 +55,11 @@ const ToggleDarkMode = () => {
         }
         .sun {
           margin-right: 5px;
+          color: var(--nav-link);
         }
         .moon {
           margin-left: 5px;
+          color: var(--nav-link);
         }
         .is-toggle {
           display: inline-flex;

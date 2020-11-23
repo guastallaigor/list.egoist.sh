@@ -68,8 +68,8 @@ const MediaList = ({ status, pageProps }) => {
           .empty-list {
             padding: 50px 30px;
             text-align: center;
-            border: 1px solid #e2e2e2;
-            color: #666;
+            border: 1px solid var(--empty-border);
+            color: var(--text);
             border-radius: 4px;
             font-size: 2rem;
           }
