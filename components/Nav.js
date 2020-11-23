@@ -105,7 +105,7 @@ const Nav = () => {
             color: var(--color-select);
             background-color: var(--background-select);
             border-radius: 3px;
-            transition: border .2s ease-in-out;
+            transition: border 0.2s ease-in-out;
           }
           select:hover {
             border-color: var(--border-hover-select);
@@ -121,7 +121,7 @@ const Nav = () => {
           }
           a {
             color: var(--nav-link);
-            transition: color .2s ease-in-out;
+            transition: color 0.2s ease-in-out;
           }
           a:hover {
             color: var(--nav-link-hover);

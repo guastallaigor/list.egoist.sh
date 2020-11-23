@@ -4,7 +4,12 @@ const ToggleDarkMode = () => {
   const { darkModeActive, switchToDarkMode, switchToLightMode } = useDarkMode()
 
   const toggleMode = () => {
-    return darkModeActive ? switchToLightMode() : switchToDarkMode()
+    if (darkModeActive) {
+      switchToLightMode()
+      return
+    }
+
+    switchToDarkMode()
   }
 
   return (
