@@ -1,16 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 const PageTitle = ({ status }) => {
-  const router = useRouter()
   const title = `@guastallaigor ${
     status === 'completed'
       ? 'Completed'
       : status === 'current'
-      ? router.query.type === 'manga'
-        ? 'Reading'
-        : 'Watching'
+      ? 'Watching'
       : 'Planning'
   } List`
   return (

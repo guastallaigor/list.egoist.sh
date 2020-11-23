@@ -1,0 +1,38 @@
+query getMedia($id: Int) {
+  Media(id: $id) {
+    id
+    format
+    nextAiringEpisode {
+      timeUntilAiring
+    }
+    season
+    seasonYear
+    episodes
+    chapters
+    volumes
+    siteUrl
+    description
+    coverImage {
+      large
+      color
+    }
+    tags {
+      name
+    }
+    genres
+    meanScore
+    averageScore
+    popularity
+    bannerImage
+    title {
+      english
+      romaji
+      native
+    }
+    startDate {
+      year
+      month
+      day
+    }
+  }
+}

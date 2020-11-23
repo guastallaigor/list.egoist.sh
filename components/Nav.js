@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import GitHub from './GitHub'
+import ToggleDarkMode from './ToggleDarkMode'
 
 const Nav = () => {
   const router = useRouter()
@@ -42,28 +43,31 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <a href="https://anilist.co/user/egoistlily" target="blank">
+            <a href="https://anilist.co/user/guastallaigor" target="blank">
               My AniList
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                x="0px"
+                y="0px"
+                viewBox="0 0 100 100"
+                width="15"
+                height="15"
+                className="external-link-icon"
+              >
+                <path
+                  fill="currentColor"
+                  d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
+                />{' '}
+                <polygon
+                  fill="currentColor"
+                  points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
+                />
+              </svg>
             </a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              x="0px"
-              y="0px"
-              viewBox="0 0 100 100"
-              width="15"
-              height="15"
-              className="external-link-icon"
-            >
-              <path
-                fill="currentColor"
-                d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
-              />{' '}
-              <polygon
-                fill="currentColor"
-                points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
-              />
-            </svg>
+          </li>
+          <li>
+            <ToggleDarkMode />
           </li>
         </ul>
         <div className="options">
@@ -96,12 +100,15 @@ const Nav = () => {
           }
           select {
             appearance: none;
-            border: 1px solid #eaeaea;
+            border: 1px solid var(--border-select);
             padding: 5px 10px;
-            background-color: white;
+            color: var(--color-select);
+            background-color: var(--background-select);
+            border-radius: 3px;
+            transition: border 0.2s ease-in-out;
           }
           select:hover {
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border-color: var(--border-hover-select);
           }
           ul {
             margin: 0;
@@ -113,17 +120,23 @@ const Nav = () => {
             margin-right: 20px;
           }
           a {
-            color: #999;
+            color: var(--nav-link);
+            transition: color 0.2s ease-in-out;
           }
           a:hover {
-            color: #666;
+            color: var(--nav-link-hover);
           }
           a.active {
-            color: #000;
+            color: var(--nav-link-active);
           }
           .external-link-icon {
-            color: #999;
+            color: var(--nav-link);
             margin-left: 3px;
+          }
+          @media screen and (max-width: 768px) {
+            .options {
+              display: none;
+            }
           }
         `}</style>
       </nav>
