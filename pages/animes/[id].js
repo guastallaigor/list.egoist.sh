@@ -10,10 +10,11 @@ import { useDarkMode } from 'next-dark-mode'
 
 export default function Anime({ data }) {
   const { isFallback } = useRouter()
-  const { darkModeActive } = useDarkMode()
-  const theme = darkModeActive ? 'dark' : 'light'
 
   if (isFallback) return <Loading />
+
+  const { darkModeActive } = useDarkMode()
+  const theme = darkModeActive ? 'dark' : 'light'
 
   return (
     <section className={`main ${theme}`}>
@@ -253,7 +254,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
